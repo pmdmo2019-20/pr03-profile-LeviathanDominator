@@ -15,8 +15,6 @@ import es.iessaladillo.pedrojoya.profile.utils.toast
 
 class AvatarActivity : AppCompatActivity() {
 
-    //private lateinit var viewModel: ProfileActivityViewModel
-
     private var imgAvatar1: ImageView? = null
     private var chkAvatar1: CheckBox? = null
     private var imgAvatar2: ImageView? = null
@@ -41,36 +39,7 @@ class AvatarActivity : AppCompatActivity() {
         setContentView(R.layout.avatar_activity)
         setupViews()
         setupListeners()
-        var intent = getIntent()
-        intent?.getStringExtra("AVATAR")?.let { toast(it) }
-        // TODO
     }
-
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-toast("THIS IS WORKING")
-       // if(resultCode == RESULT_OK && intent != null){
-            selectedAvatar(data)
-       // }
-        super.onActivityResult(requestCode, resultCode, data)
-    }
-
-    private fun selectedAvatar(data: Intent?) {
-        var num = data?.extras?.getInt("AVATAR")
-        toast(data?.extras?.getInt("AVATAR").toString())
-        //var num: Int = data?.extras?.get(EXTRA_AVATAR).toString().toInt()
-        //viewModel = ViewModelProvider(this).get(ProfileActivityViewModel::class.java)
-        when(num){
-            1 -> chkAvatar1?.let { singleCheckBox(it) }
-            2 -> chkAvatar2?.let { singleCheckBox(it) }
-            3 -> chkAvatar3?.let { singleCheckBox(it) }
-            4 -> chkAvatar4?.let { singleCheckBox(it) }
-            5 -> chkAvatar5?.let { singleCheckBox(it) }
-            6 -> chkAvatar6?.let { singleCheckBox(it) }
-            7 -> chkAvatar7?.let { singleCheckBox(it) }
-            8 -> chkAvatar8?.let { singleCheckBox(it) }
-            9 -> chkAvatar9?.let { singleCheckBox(it) }
-        }
-    }*/
 
     private fun setupViews() {
         imgAvatar1 = ActivityCompat.requireViewById(this, R.id.imgAvatar1)
@@ -174,8 +143,8 @@ toast("THIS IS WORKING")
     }
 
     private fun selectAvatar(id: Int): Avatar? {
-        for (avatar: Avatar in queryAllAvatars()){
-            if (avatar.id == id){
+        for (avatar: Avatar in queryAllAvatars()) {
+            if (avatar.id == id) {
                 return avatar
             }
         }
@@ -189,10 +158,7 @@ toast("THIS IS WORKING")
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.mnuSelect) {
-            // TODO
-            //toast("It works!")
             avatarListener(selectCheckBoxForID())
-           // viewModel.setAvatarId(selectCheckBoxForID())
             return true
         }
         return super.onOptionsItemSelected(item)

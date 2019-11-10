@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,7 +9,7 @@
         android:id="@+id/lblName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name (*)"
+        android:text="@string/lblName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -18,9 +17,10 @@
         android:id="@+id/txtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/txtName"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:nextFocusDown="@id/txtEmail"
-        android:tooltipText="(name)"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblName" />
 
@@ -28,7 +28,7 @@
         android:id="@+id/lblEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email (*)"
+        android:text="@string/lblEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
@@ -36,9 +36,10 @@
         android:id="@+id/txtEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="@string/txtEmail"
+        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         android:nextFocusDown="@id/txtPhonenumber"
-        android:tooltipText="(email)"
         app:layout_constraintEnd_toStartOf="@+id/imgEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblEmail" />
@@ -47,6 +48,7 @@
         android:id="@+id/imgEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/lblEmail"
         app:layout_constraintBottom_toBottomOf="@+id/txtEmail"
         app:layout_constraintEnd_toStartOf="@+id/txtPhonenumber"
         app:layout_constraintStart_toEndOf="@+id/txtEmail"
@@ -57,7 +59,7 @@
         android:id="@+id/lblPhonenumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Phone Number (*)"
+        android:text="@string/lblPhonenumber"
         app:layout_constraintStart_toEndOf="@+id/imgEmail"
         app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
@@ -65,9 +67,10 @@
         android:id="@+id/txtPhonenumber"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="@string/txtPhonenumber"
+        android:importantForAutofill="no"
         android:inputType="phone"
         android:nextFocusDown="@id/txtAddress"
-        android:tooltipText="(phone)"
         app:layout_constraintEnd_toStartOf="@+id/imgPhonenumber"
         app:layout_constraintStart_toEndOf="@+id/imgEmail"
         app:layout_constraintTop_toBottomOf="@+id/lblPhonenumber" />
@@ -76,6 +79,7 @@
         android:id="@+id/imgPhonenumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/lblPhonenumber"
         android:src="@drawable/ic_call_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/txtPhonenumber"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +89,7 @@
         android:id="@+id/lblAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Address (*)"
+        android:text="@string/lblAddress"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
@@ -93,9 +97,10 @@
         android:id="@+id/txtAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="@string/txtAddress"
+        android:importantForAutofill="no"
         android:inputType="textPostalAddress"
         android:nextFocusDown="@id/txtWeb"
-        android:tooltipText="(address)"
         app:layout_constraintEnd_toStartOf="@+id/imgAddress"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblAddress" />
@@ -104,6 +109,7 @@
         android:id="@+id/imgAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/lblAddress"
         android:src="@drawable/ic_map_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/txtAddress"
         app:layout_constraintEnd_toEndOf="parent"
@@ -113,7 +119,7 @@
         android:id="@+id/lblWeb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Web (*)"
+        android:text="@string/lblWeb"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtAddress" />
 
@@ -121,9 +127,10 @@
         android:id="@+id/txtWeb"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="@string/txtWeb"
+        android:importantForAutofill="no"
         android:inputType="textUri"
         android:nextFocusDown="@id/txtName"
-        android:tooltipText="(url)"
         app:layout_constraintEnd_toStartOf="@+id/imgWeb"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblWeb" />
@@ -132,6 +139,7 @@
         android:id="@+id/imgWeb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/lblWeb"
         android:src="@drawable/ic_web_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/txtWeb"
         app:layout_constraintEnd_toEndOf="parent"
@@ -141,7 +149,7 @@
         android:id="@+id/lblRequired"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="(*) Required"
+        android:text="@string/lblRequired"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtWeb" />
 

@@ -1,21 +1,17 @@
 package es.iessaladillo.pedrojoya.profile.ui.main
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import es.iessaladillo.pedrojoya.profile.R
 import es.iessaladillo.pedrojoya.profile.data.local.Database.queryAllAvatars
-import es.iessaladillo.pedrojoya.profile.data.local.Database.queryDefaultAvatar
 import es.iessaladillo.pedrojoya.profile.data.local.entity.Avatar
 import es.iessaladillo.pedrojoya.profile.ui.avatar.AvatarActivity
 import es.iessaladillo.pedrojoya.profile.ui.avatar.AvatarActivity.Companion.EXTRA_AVATAR
@@ -45,7 +41,6 @@ class ProfileActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(ProfileActivityViewModel::class.java)
         avatar = selectAvatar(viewModel.avatarId)
         setAvatar()
-        // TODO
     }
 
     private fun setupViews() {
@@ -67,24 +62,13 @@ class ProfileActivity : AppCompatActivity() {
         btnWeb!!.setOnClickListener { webButtonListener() }
     }
 
-    private fun setModelToEditText() {
-        toast(viewModel.avatarId.toString())
-        avatar = selectAvatar(viewModel.avatarId)
-        txtName?.text = viewModel.username
-        txtPhonenumber?.text = viewModel.phonenumber
-        txtAddress?.text = viewModel.address
-        txtWeb?.text = viewModel.web
-    }
-
     private fun setAvatar() {
         imgAvatar!!.setImageResource(avatar!!.resId)
         lblAvatar!!.text = avatar!!.name
     }
 
     private fun imgAvatarListener() {
-        //saveToViewModel()
         val intent = Intent(this.avatar?.let { AvatarActivity.newIntent(this, it) })
-        avatar?.id?.let { intent.extras.putInt("AVATAR", it) }
         startActivityForResult(intent, 1)
     }
 
@@ -145,14 +129,6 @@ class ProfileActivity : AppCompatActivity() {
         textView.requestFocus()
     }
 
-    private fun saveToViewModel() {
-        avatar?.id?.let { viewModel.setAvatarId(it) }
-        viewModel.setUsername(txtName?.text.toString())
-        viewModel.setPhonenumber(txtPhonenumber?.text.toString())
-        viewModel.setAddress(txtAddress?.text.toString())
-        viewModel.setWeb(txtWeb?.text.toString())
-    }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.profile_activity, menu)
         return super.onCreateOptionsMenu(menu)
@@ -168,74 +144,45 @@ class ProfileActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == RESULT_OK && intent != null){
-        extractResult(data)
-        setAvatar()
+        if (resultCode == RESULT_OK && intent != null) {
+            extractResult(data)
+            setAvatar()
         }
     }
 
     private fun extractResult(intent: Intent?) {
-       // val num = intent!!.extras[EXTRA_AVATAR]
-       /* for (avatar in queryAllAvatars()){
-            if (avatar.id == num){
-
-            }
-        }*/
         avatar = selectAvatar(intent?.extras?.get(EXTRA_AVATAR))
         avatar?.id?.let { viewModel.setAvatarId(it) }
-        //avatar = queryAllAvatars()[intent!!.getIntExtra(AvatarActivity.EXTRA_AVATAR, 0)]
     }
 
     private fun selectAvatar(num: Any?): Avatar? {
-        for (avatar: Avatar in queryAllAvatars()){
-            if (avatar.id == num){
+        for (avatar: Avatar in queryAllAvatars()) {
+            if (avatar.id == num) {
                 return avatar
             }
         }
         return null
     }
 
-   /* override fun onDestroy() {
-        super.onDestroy()
-        saveToViewModel()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        toast(viewModel.username)
-        setModelToEditText()
-        //toast(viewModel.avatarId.toString())
-
-    }
-*/
-   /* override fun onSaveInstanceState(outState: Bundle) {
-        toast(avatar?.id.toString())
-        outState.putSerializable("AVATAR", avatar?.id)
-        outState.putString("NAME", txtName?.text.toString())
-        outState.putString("EMAIL", txtEmail?.text.toString())
-        outState.putString("PHONENUMBER", txtPhonenumber?.text.toString())
-        outState.putString("ADDRESS", txtAddress?.text.toString())
-        outState.putString("WEB", txtWeb?.text.toString())
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
-        toast((savedInstanceState?.getSerializable(AVATAR) as Int).toString())
-        avatar?.id = savedInstanceState?.getSerializable(AVATAR) as Int
-        txtName?.text = savedInstanceState.getSerializable(NAME) as String
-        txtEmail?.text = savedInstanceState.getSerializable(EMAIL) as String
-        txtPhonenumber?.text = savedInstanceState.getSerializable(PHONENUMBER) as String
-        txtAddress?.text = savedInstanceState.getSerializable(ADDRESS) as String
-        txtWeb?.text = savedInstanceState.getSerializable(WEB) as String
-        super.onRestoreInstanceState(savedInstanceState)
-    }
-*/
-
-
-
     private fun save() {
-        toast("User saved successfully")
-        // TODO
+        val name: String = txtName?.text.toString()
+        val email: String = txtEmail?.text.toString()
+        val phonenumber: String = txtPhonenumber?.text.toString()
+        val address: String = txtAddress?.text.toString()
+        val web: String = txtWeb?.text.toString()
+        if (name == "") {
+            invalidInputNotification(txtName!!, getString(R.string.profile_invalid_name))
+        } else if (!email.isValidEmail()) {
+            invalidInputNotification(txtEmail!!, getString(R.string.profile_invalid_email))
+        } else if (!phonenumber.isValidPhone()) {
+            invalidInputNotification(txtPhonenumber!!, getString(R.string.profile_invalid_phonenumber))
+        } else if (address == "") {
+            invalidInputNotification(txtAddress!!, getString(R.string.profile_invalid_address))
+        } else if (!web.isValidUrl()) {
+            invalidInputNotification(txtWeb!!, getString(R.string.profile_invalid_web))
+        } else {
+            toast(getString(R.string.save))
+        }
     }
 
 }

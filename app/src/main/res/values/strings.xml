@@ -13,4 +13,16 @@
     <string name="profile_invalid_web">Invalid URL</string>
     <string name="noAppWarning">No app installed to perform this action</string>
     <string name="imgAvatar">User avatar</string>
+    <string name="lblName">Name (*)</string>
+    <string name="txtName">(name)</string>
+    <string name="lblEmail">Email (*)</string>
+    <string name="txtEmail">(email)</string>
+    <string name="lblPhonenumber">Phone Number (*)</string>
+    <string name="txtPhonenumber">(phone)</string>
+    <string name="lblAddress">Address (*)</string>
+    <string name="txtAddress">(address)</string>
+    <string name="lblWeb">Web (*)</string>
+    <string name="txtWeb">(url)</string>
+    <string name="lblRequired">(*) Required</string>
+    <string name="save">User saved successfully</string>
 </resources>
