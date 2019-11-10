@@ -25,4 +25,5 @@
     <string name="txtWeb">(url)</string>
     <string name="lblRequired">(*) Required</string>
     <string name="save">User saved successfully</string>
+    <string name="avatarKey">AVATAR</string>
 </resources>

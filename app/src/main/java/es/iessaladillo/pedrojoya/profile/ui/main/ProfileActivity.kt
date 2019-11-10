@@ -69,6 +69,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun imgAvatarListener() {
         val intent = Intent(this.avatar?.let { AvatarActivity.newIntent(this, it) })
+        intent.putExtra("AVATAR", avatar?.id.toString())
         startActivityForResult(intent, 1)
     }
 

@@ -3,7 +3,8 @@ package es.iessaladillo.pedrojoya.profile.ui.avatar
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.CheckBox
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +12,6 @@ import androidx.core.app.ActivityCompat
 import es.iessaladillo.pedrojoya.profile.R
 import es.iessaladillo.pedrojoya.profile.data.local.Database.queryAllAvatars
 import es.iessaladillo.pedrojoya.profile.data.local.entity.Avatar
-import es.iessaladillo.pedrojoya.profile.utils.toast
 
 class AvatarActivity : AppCompatActivity() {
 
@@ -39,6 +39,22 @@ class AvatarActivity : AppCompatActivity() {
         setContentView(R.layout.avatar_activity)
         setupViews()
         setupListeners()
+        selectedAvatar()
+    }
+
+    private fun selectedAvatar() {
+        when (intent.getStringExtra(getString(R.string.avatarKey)).toInt()){
+            1 -> chkAvatar1!!.isChecked = true
+            4 -> chkAvatar2!!.isChecked = true
+            7 -> chkAvatar3!!.isChecked = true
+            2 -> chkAvatar4!!.isChecked = true
+            5 -> chkAvatar5!!.isChecked = true
+            8 -> chkAvatar6!!.isChecked = true
+            3 -> chkAvatar7!!.isChecked = true
+            6 -> chkAvatar8!!.isChecked = true
+            9 -> chkAvatar9!!.isChecked = true
+
+        }
     }
 
     private fun setupViews() {
