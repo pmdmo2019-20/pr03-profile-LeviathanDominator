@@ -2,4 +2,15 @@
     <string name="app_name">Profile</string>
     <string name="avatar_title">Select Avatar</string>
     <string name="profile_title">User profile</string>
+
+
+    <string name="avatar_select">Select Avatar</string>
+    <string name="profile_save">User profile</string>
+    <string name="profile_invalid_name">Name is required</string>
+    <string name="profile_invalid_email">Invalid email</string>
+    <string name="profile_invalid_phonenumber">Invalid phone number</string>
+    <string name="profile_invalid_address">Invalid address</string>
+    <string name="profile_invalid_web">Invalid URL</string>
+    <string name="noAppWarning">No app installed to perform this action</string>
+    <string name="imgAvatar">User avatar</string>
 </resources>

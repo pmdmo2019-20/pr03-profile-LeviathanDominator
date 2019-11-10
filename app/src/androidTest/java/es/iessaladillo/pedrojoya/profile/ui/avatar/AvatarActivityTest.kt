@@ -32,7 +32,7 @@ class AvatarActivityTest {
     fun setup() {
         val avatar = Avatar(2, R.drawable.bulbasur, "Bulbasur")
         testRule.launchActivity(
-            Intent().putExtra("EXTRA_AVATAR", avatar)
+            Intent().putExtra("EXTRA_AVATAR", avatar.id)
         )
     }
 
